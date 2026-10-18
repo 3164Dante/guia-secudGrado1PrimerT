@@ -119,3 +119,27 @@ button.ver{background:transparent;color:var(--muted);border:1.5px dashed var(--l
 .toast.error{background:#c92a2a}
 .fatal{max-width:600px;margin:60px auto;padding:20px;background:var(--badbg);border-radius:12px;font-size:1.1rem}
 @media print{nav,.topbar,.barra,.practica button,.ver{display:none!important}}
+.frsvg{display:inline-block;max-width:100%;height:auto;vertical-align:middle;margin:0}
+.frsvg rect,.frsvg path,.frsvg circle{stroke:var(--ink);stroke-width:1.5}
+.frsvg .fa{fill:#4c6ef5}.frsvg .fb{fill:#f59f00}.frsvg .fx{fill:#9c36b5}.frsvg .fv{fill:var(--card)}
+.fr-h{margin:26px 0 8px;color:var(--acc);border-bottom:2px solid var(--acc2);padding-bottom:4px}
+.fr-fila{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:8px 0}
+.fr-fila>.frsvg{flex:0 1 auto}
+.fr-col{display:grid;gap:2px}
+.fr-grande{font-size:2rem;font-weight:800}
+.c-num{color:#4c6ef5}.c-den{color:#e8590c}
+.regla{background:var(--card);border:2px solid var(--acc);border-radius:10px;padding:10px 14px;margin:10px 0}
+.tip{background:var(--okbg);border-radius:10px;padding:10px 14px;margin:10px 0}
+.error{background:var(--badbg);border-left:4px solid #c92a2a;border-radius:8px;padding:10px 14px;margin:10px 0}
+.pasos{padding-left:22px}.pasos li{margin:6px 0}
+.fr-pasos{display:grid;gap:8px;margin:8px 0}
+.fr-pasos>div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;line-height:2.1}
+.errores{list-style:none;padding:0}.errores li{margin:6px 0;line-height:2}
+.leyenda{display:grid;gap:6px;font-size:.92rem}
+.leyenda i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:middle;margin-right:4px;border:1px solid var(--ink)}
+.leyenda i.fa{background:#4c6ef5}.leyenda i.fb{background:#f59f00}.leyenda i.fx{background:#9c36b5}
+.teoria .frac{font-size:1em;margin:0 3px}
+.teoria table td{line-height:2}
+.intro{font-size:1.05rem}
+.ex-txt .fr-fila{margin:8px 0 0}
+@media (prefers-color-scheme:dark){.c-num{color:#91a7ff}.c-den{color:#ffa94d}}

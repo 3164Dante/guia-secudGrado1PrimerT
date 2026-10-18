@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notas del cuaderno – Matemáticas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="cuaderno.css">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<div id="demoBanner" class="demo" hidden>MODO DEMO — los datos se guardan solo en este navegador</div>
+<div id="vCargando" class="cargando">Cargando…</div>
+<div id="vApp" hidden>
+  <div class="sesbar">
+    <span class="yo">👤 <span id="uNombre"></span></span>
+    <span class="acc"><button id="btnGuias">📚 Mis guías</button><button id="btnSalir">Cerrar sesión</button></span>
+  </div>
+  <div class="wrap" id="app"></div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script src="config.js"></script>
+<script src="cuaderno.js"></script>
+</body>
+</html>
