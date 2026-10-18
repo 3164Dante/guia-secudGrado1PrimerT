@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Cardex del Profesor</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+.cx{max-width:1400px;margin:0 auto;padding:16px}
+.tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 14px}
+.tools select{font:inherit;padding:7px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.tools button{margin:0}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:130px}
+.stat b{display:block;font-size:1.5rem;color:var(--acc)}
+.stat span{color:var(--muted);font-size:.85rem}
+.tabla-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table.cx-t{width:100%;border-collapse:collapse;font-size:.88rem;margin:0}
+.cx-t th,.cx-t td{border:1px solid var(--line);padding:6px 8px;white-space:nowrap;text-align:center}
+.cx-t th{position:sticky;top:0;background:var(--acc2)}
+.cx-t td.izq,.cx-t th.izq{text-align:left}
+.cx-t tbody tr{cursor:pointer}
+.cx-t tbody tr:hover{background:var(--acc2)}
+.cx-t tr.inactivo{opacity:.55}
+.c-dom{background:var(--okbg)}
+.c-mid{background:#fff4e6}
+.c-bad{background:var(--badbg)}
+@media (prefers-color-scheme:dark){.c-mid{background:#3b2a12}}
+.cx-t small{display:block;color:var(--muted);font-size:.75rem}
+.alerta{color:#c92a2a;font-weight:700}
+dialog{border:0;border-radius:16px;padding:0;max-width:min(960px,96vw);width:100%;background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg-cab{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card)}
+.dlg-cab h2{margin:0;font-size:1.2rem}
+.dlg-cuerpo{padding:16px 18px;max-height:75vh;overflow:auto}
+.fila{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.fila input{font:inherit;padding:7px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.mono{font-family:ui-monospace,Consolas,monospace;background:var(--acc2);padding:2px 8px;border-radius:6px}
+.peligro{background:#c92a2a}
+.log{font-family:ui-monospace,Consolas,monospace;font-size:.85rem;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;max-height:300px;overflow:auto;white-space:pre-wrap}
+.prueba li{margin:4px 0}
+.prueba .ok{color:#2b8a3e}.prueba .mal{color:#c92a2a;font-weight:700}
+#imprimir{display:none}
+@media print{
+  body.imprimiendo > *:not(#imprimir){display:none!important}
+  body.imprimiendo #imprimir{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .cred{border:1.5px dashed #555;border-radius:10px;padding:12px;break-inside:avoid;font-size:13px;color:#000}
+  .cred h3{margin:0 0 6px;font-size:15px}
+  .cred .mono{background:#eee;font-size:15px}
+}
+</style>
+</head>
+<body>
+<div id="demoBanner" class="demo" hidden>MODO DEMO — datos locales. Profesor demo: usuario «profe», contraseña «profe»</div>
+<div id="vCargando" class="cargando">Cargando…</div>
+
+<div id="vLogin" hidden>
+  <header><h1>🗂️ Cardex del Profesor</h1><p>Acceso solo para el profesor</p></header>
+  <div class="login">
+    <form id="fLogin" class="card" autocomplete="on">
+      <h1>Entrar</h1>
+      <div id="loginMsg" class="msg" hidden></div>
+      <label for="fUsuario">Correo o usuario del profesor</label>
+      <input id="fUsuario" autocapitalize="none" spellcheck="false" required>
+      <label for="fPass">Contraseña</label>
+      <input id="fPass" type="password" required>
+      <button id="btnEntrar" type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div id="vApp" hidden>
+  <header><h1>🗂️ Cardex del Profesor</h1><p id="hSub"></p></header>
+  <div class="cx">
+    <div class="tools">
+      <label>Guía: <select id="selGuia"></select></label>
+      <button id="btnActualizar">🔄 Actualizar</button>
+      <button id="btnCrear">➕ Crear cuentas</button>
+      <button id="btnImprimir">🖨️ Imprimir credenciales</button>
+      <button id="btnCsvAvance" class="sec">⬇ Cardex (CSV/Excel)</button>
+      <button id="btnCsvCred" class="sec">⬇ Credenciales (CSV)</button>
+      <button id="btnPrueba" class="sec">🛡️ Prueba de seguridad</button>
+      <button id="btnSalir" class="sec">Cerrar sesión</button>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="tabla-wrap"><table class="cx-t" id="tabla"></table></div>
+    <p class="hist">Clic en un alumno para ver su detalle y acciones. ⚠ = evaluaciones demasiado rápidas (menos de 8 s por pregunta). 🔁 = entró mientras tenía otra sesión abierta (posible contraseña prestada). 👁 = respuestas vistas.</p>
+  </div>
+</div>
+
+<dialog id="dlg"><div class="dlg-cab"><h2 id="dlgTit"></h2><button class="sec" onclick="this.closest('dialog').close()">✕</button></div><div class="dlg-cuerpo" id="dlgCuerpo"></div></dialog>
+<div id="imprimir"></div>
+<div id="toast" class="toast"></div>
+<script src="config.js"></script>
+<script src="profe.js"></script>
+</body>
+</html>

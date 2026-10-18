@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía de Estudio – Secundaria</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div id="demoBanner" class="demo" hidden>MODO DEMO — los datos se guardan solo en este navegador</div>
+
+<!-- Cargando -->
+<div id="vCargando" class="cargando">Cargando…</div>
+
+<!-- Inicio de sesión -->
+<div id="vLogin" hidden>
+  <header><h1>📘 Guía de Estudio</h1><p>1.º de Secundaria</p></header>
+  <div class="login">
+    <form id="fLogin" class="card" autocomplete="off">
+      <h1>Entrar</h1>
+      <p>Escribe el usuario y la contraseña que te dio tu profesor.</p>
+      <div id="loginMsg" class="msg" hidden></div>
+      <label for="fUsuario">Usuario</label>
+      <input id="fUsuario" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ej. nube-cobre-38" required>
+      <label for="fPass">Contraseña</label>
+      <input id="fPass" type="password" required>
+      <button id="btnEntrar" type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Aplicación -->
+<div id="vApp" hidden>
+  <header><h1 id="hTitulo"></h1><p id="hSub"></p></header>
+  <div class="topbar">
+    <span class="yo">👤 <span id="uNombre"></span></span>
+    <span>
+      <button id="btnMaterias" class="sec" hidden>📚 Materias</button>
+      <button id="btnSalir" class="sec">Cerrar sesión</button>
+    </span>
+  </div>
+  <nav id="nav"></nav>
+  <div class="wrap-resumen"><div id="resumen"></div></div>
+  <main id="contenido"></main>
+  <div id="vExamen" hidden>
+    <div class="ex-wrap">
+      <div class="ex-head" id="exIntro"></div>
+      <div id="exResultado"></div>
+      <div id="exPreguntas"></div>
+    </div>
+  </div>
+  <div class="barra" id="barraEx" hidden>
+    <button id="exCalificar">📝 Calificar</button>
+    <button id="exSoloErr" class="sec" hidden>Ver solo errores</button>
+    <button id="exNueva" hidden>🔁 Nueva evaluación</button>
+  </div>
+  <footer>Guía de estudio • 1.º de Secundaria</footer>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
