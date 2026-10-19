@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía de Biología</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="biologia.css?v=mveii1zy">
+</head>
+<body>
+<div id="demoBanner" class="demo" hidden>MODO DEMO — los datos se guardan solo en este navegador</div>
+<header>
+  <h1>🧬 Mi Guía de Biología</h1>
+  <p>1º de secundaria · 1er trimestre · Salud y bienestar</p>
+  <div class="stats">
+    <span class="pill" id="sTemas">0/8 temas dominados</span>
+    <span class="pill" id="sEstrellas">⭐ 0</span>
+  </div>
+  <div class="bar"><i id="barra"></i></div>
+</header>
+
+<div id="vCargando" class="cargando">Cargando…</div>
+<div class="sesbar" id="sesbar" hidden>
+  <span class="yo">👤 <span id="uNombre"></span></span>
+  <span><button id="btnGuias">📚 Mis guías</button> <button id="btnSalir">Cerrar sesión</button></span>
+</div>
+<div class="wrap" id="app"></div>
+<footer><span id="estNube" class="estnube">Tu avance se guarda en tu cuenta 💾</span></footer>
+
+<script src="config.js?v=mveii1zy"></script>
+<script src="biologia-guia.js?v=mveii1zy"></script>
+<script src="biologia.js?v=mveii1zy"></script>
+</body>
+</html>

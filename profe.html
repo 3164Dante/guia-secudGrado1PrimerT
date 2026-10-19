@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Cardex del Profesor</title>
-<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="estilos.css?v=mveii1zy">
 <style>
 .cx{max-width:1400px;margin:0 auto;padding:16px}
 .tools{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 14px}
@@ -29,6 +29,10 @@ table.cx-t{width:100%;border-collapse:collapse;font-size:.88rem;margin:0}
 @media (prefers-color-scheme:dark){.c-mid{background:#3b2a12}}
 .cx-t small{display:block;color:var(--muted);font-size:.75rem}
 .alerta{color:#c92a2a;font-weight:700}
+.cx-t td.chk{cursor:default}
+.cx-t td.chk input{width:18px;height:18px;cursor:pointer}
+.mini{padding:3px 8px;font-size:.78rem;margin:2px}
+.nota-alertas{color:var(--muted);font-size:.8rem}
 dialog{border:0;border-radius:16px;padding:0;max-width:min(960px,96vw);width:100%;background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.3)}
 dialog::backdrop{background:rgba(0,0,0,.45)}
 .dlg-cab{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card)}
@@ -77,9 +81,12 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
       <label>Guía: <select id="selGuia"></select></label>
       <button id="btnActualizar">🔄 Actualizar</button>
       <button id="btnCrear">➕ Crear cuentas</button>
+      <button id="btnGuias">📚 Guías por alumno</button>
+      <button id="btnAlertas" class="sec">🔎 Revisar alertas</button>
       <button id="btnImprimir">🖨️ Imprimir credenciales</button>
       <button id="btnCsvAvance" class="sec">⬇ Cardex (CSV/Excel)</button>
       <button id="btnCsvCred" class="sec">⬇ Credenciales (CSV)</button>
+      <button id="btnRespaldo" class="sec">⬇ Respaldo (JSON)</button>
       <button id="btnPrueba" class="sec">🛡️ Prueba de seguridad</button>
       <button id="btnSalir" class="sec">Cerrar sesión</button>
     </div>
@@ -93,7 +100,7 @@ dialog::backdrop{background:rgba(0,0,0,.45)}
 <dialog id="dlg"><div class="dlg-cab"><h2 id="dlgTit"></h2><button class="sec" onclick="this.closest('dialog').close()">✕</button></div><div class="dlg-cuerpo" id="dlgCuerpo"></div></dialog>
 <div id="imprimir"></div>
 <div id="toast" class="toast"></div>
-<script src="config.js"></script>
-<script src="profe.js"></script>
+<script src="config.js?v=mveii1zy"></script>
+<script src="profe.js?v=mveii1zy"></script>
 </body>
 </html>
